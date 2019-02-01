@@ -1,7 +1,10 @@
 import React from 'react';
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
+import chaiEnzyme from 'chai-enzyme';
 import { shallow } from 'enzyme';
 import FullHeader from '../../src/Main';
+
+chai.use(chaiEnzyme());
 
 describe('<FullHeader />', () => {
    it('should have a header tag when mount', () => {
@@ -43,10 +46,39 @@ describe('<FullHeader />', () => {
         });
    });
 
-
-
-
-   it('should have h2 tag when mount', () => {
-        //expect(wrapper.find('h2')).to.have.length(1);
+   context('bgColor', () => {
+    it('should have a background-color equal #ccc when none is passed', () => {
+        const wrapper = shallow(<FullHeader title='TDD' />);
+        expect(wrapper).to.have.style('background-color').equal('#ccc');
     });
+
+    it('should have a background-color equal #ddd', () => {
+            const wrapper = shallow(<FullHeader title='TDD' bgColor='#ddd' />);
+            expect(wrapper).to.have.style('background-color').equal('#ddd');
+    });
+   });
+
+   context('textColor', () => {
+    it('should have a text-color equal #fff when none is passed', () => {
+        const wrapper = shallow(<FullHeader title='TDD' />);
+        expect(wrapper).to.have.style('color').equal('#fff');
+    });
+
+    it('should have a text-color equal #fff000', () => {
+            const wrapper = shallow(<FullHeader title='TDD' textColor='#fff000' />);
+            expect(wrapper).to.have.style('color').equal('#fff000');
+    });
+   });
+
+   context('fontFamily', () => {
+    it('should have a font equal sans-serif when none is passed', () => {
+        const wrapper = shallow(<FullHeader title='TDD' />);
+        expect(wrapper).to.have.style('font-family').equal('sans-serif');
+    });
+
+    it('should have a font equal open-sans when passed', () => {
+        const wrapper = shallow(<FullHeader title='TDD' font='open-sans' />);
+        expect(wrapper).to.have.style('font-family').equal('open-sans');
+    });
+  });
 });

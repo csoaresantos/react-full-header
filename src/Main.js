@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 const defaultProps = {
     bgColor: '#ccc',
     textColor: '#fff',
-    font: 'sans-serif'
+    font: 'sans-serif',
+    bgImage: ''
 }
-const FullHeader = ({ title, subtitle, bgColor, textColor, font }) => {
+const FullHeader = ({ title, subtitle, bgColor, textColor, font, bgImage }) => {
     const headerStyle = {
         backgroundColor: bgColor,
         color: textColor,
-        fontFamily: font
+        fontFamily: font,
+        backgroundImage: `url(${bgImage})`
     }
 
     const component = (

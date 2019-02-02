@@ -89,8 +89,27 @@ describe('<FullHeader />', () => {
     });
 
     it('should have a background-imag equal url(bg.jpeg) when is passed', () => {
-        const wrapper = shallow(<FullHeader bgImage='bg.jpeg' />);
+        const wrapper = shallow(<FullHeader bgImg='bg.jpeg' />);
         expect(wrapper).to.have.style('background-image').equal('url(bg.jpeg)');
     });
   });
+
+  context('video', () => {
+    it('should have a tag video when video is passed', () => {
+        const wrapper = shallow(<FullHeader video='my_video' />);
+        expect(wrapper.find('video')).to.have.length(1);
+    });
+
+    it('should not video a tag video is not passed', () => {
+        const wrapper = shallow(<FullHeader />);
+        expect(wrapper.find('video')).to.have.length(0);
+    });
+    
+    it('should have a video with when passed', () => {
+        const wrapper = shallow(<FullHeader video='my_video' />)
+        expect(wrapper.find('video').props().src).to.be.equal('my_video');
+    });
+
+   });
+
 });
